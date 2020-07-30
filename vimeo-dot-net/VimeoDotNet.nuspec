@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>VimeoDotNet</id>
+	<version>$version$</version>
+        <title>Vimeo-Dot-Net</title>
+        <authors>Stephen Commisso, Mikhail Filippov</authors>
+        <licenseUrl>https://github.com/mfilippov/vimeo-dot-net/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/mfilippov/vimeo-dot-net</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>.NET wrapper around Vimeo's REST API v3.0.
+
+            Features:
+            - Account information retrieval
+            - Video retrieval
+            - Resumable video file upload</description>
+            <summary />
+            <releaseNotes>Add search support for GetUserVideos method</releaseNotes>
+            <copyright>Copyright © 2015-2016, Stephen Commisso, Mikhail Filippov</copyright>
+            <language>en-US</language>
+            <tags>vimeo, async</tags>
+            <dependencies>
+                <group>
+                    <dependency id="Newtonsoft.Json" version="10.0.3" />
+                </group>
+            </dependencies>
+        </metadata>
+        <files>
+            <file src="src\VimeoDotNet\bin\Release\net45\VimeoDotNet.dll" target="lib\net45" />
+            <file src="src\VimeoDotNet\bin\Release\net45\VimeoDotNet.pdb" target="lib\net45" />
+            <file src="src\VimeoDotNet\bin\Release\net45\VimeoDotNet.xml" target="lib\net45" />
+            <file src="src\VimeoDotNet\bin\Release\netstandard1.3\VimeoDotNet.dll" target="lib\netstandard1.3" />
+            <file src="src\VimeoDotNet\bin\Release\netstandard1.3\VimeoDotNet.pdb" target="lib\netstandard1.3" />
+            <file src="src\VimeoDotNet\bin\Release\netstandard1.3\VimeoDotNet.xml" target="lib\netstandard1.3" />
+      </files>
+  </package>
