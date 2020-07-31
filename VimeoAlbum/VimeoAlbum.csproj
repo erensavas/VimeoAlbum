@@ -73,10 +73,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKitaplar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitaplar.Designer.cs">
+      <DependentUpon>frmKitaplar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AlbumOlusturModel.cs" />
     <Compile Include="Models\ExcelModel.cs" />
     <Compile Include="Models\ExcelViewModel.cs" />
     <Compile Include="Models\ModelView.cs" />
+    <Compile Include="Models\StaticAyar.cs" />
     <Compile Include="Models\TokenKey.cs" />
     <Compile Include="Models\upload.cs" />
     <Compile Include="Models\UrunGelenJsonModel.cs" />
@@ -98,6 +105,9 @@
     <Compile Include="Services\ServiceAlbum.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitaplar.resx">
+      <DependentUpon>frmKitaplar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

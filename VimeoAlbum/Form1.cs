@@ -28,9 +28,9 @@ namespace VimeoAlbum
         Urunler urun = new Urunler();
         List<ExcelViewModel> excelListOrbim = new List<ExcelViewModel>();
         public string previousSelectedNode = null;
-        private string selectedListBox;
+        public string parenId = null;
         private int listIndex = -1;
-   
+
 
 
         public Form1()
@@ -38,7 +38,7 @@ namespace VimeoAlbum
             InitializeComponent();
 
             // listBox1.DrawMode = DrawMode.OwnerDrawFixed;
-          
+
         }
 
 
@@ -83,7 +83,7 @@ namespace VimeoAlbum
                                         listBox1.Items.Add($"{item1.VideoId}-{item1.VideoName} isimli videonun resmi yok. Ama videosu var");
                                     }
                                 }
-                               
+
                             }
                         }
 
@@ -135,6 +135,7 @@ namespace VimeoAlbum
         {
             btnAlbumOlustur.Enabled = false;
             btnEkleOrbim.Enabled = false;
+            lblUrunID.Text = "";
 
             var result = await urun.YayinlariGetir();
 
@@ -226,7 +227,7 @@ namespace VimeoAlbum
                             UrunPostModel modelTest = new UrunPostModel()
                             {
                                 yid = yayinId,
-                                uid =Convert.ToInt32(selectedNodes),
+                                uid = Convert.ToInt32(selectedNodes),
                                 urunadi = item1.Test,
                                 sira = siraTest,
                                 barkodno = item1.QrCode,
@@ -326,7 +327,7 @@ namespace VimeoAlbum
                         siraUnite++;
                     }
                 }
-               
+
 
 
 
@@ -350,11 +351,11 @@ namespace VimeoAlbum
             string queryString = String.Join("&", properties.ToArray());
 
 
-            int eklenenId = await urun.UrunApiPost("ekle", queryString);
-            if (eklenenId == 0)
+            var result = await urun.UrunApiPost("ekle", queryString);
+            if (result.eklenenid == 0)
                 return 1;
             else
-                return eklenenId;
+                return result.eklenenid;
             // TODO: Add insert logic here
         }
 
@@ -411,12 +412,18 @@ namespace VimeoAlbum
             TreeNode node = e.Node;
             //MessageBox.Show(node.Name);
             previousSelectedNode = treeView1.SelectedNode.Name;
+            StaticAyar.SelectedNode = treeView1.SelectedNode.Name;
 
             var urunler = await urun.UrunleriGetir("", node.Name, comboBox1.SelectedValue.ToString());
             string selectedNodes = treeView1.SelectedNode.Name;
-            //MessageBox.Show(selectedNodes);
-            label1.Text = $"SEÇİLEN ID : {selectedNodes}";
+            var prn = treeView1.SelectedNode.Parent?.Name;
+           
+            parenId = prn;
 
+            //MessageBox.Show(selectedNodes);
+            label1.Text = $"SEÇİLEN ID :";
+            lblUrunID.Text = selectedNodes;
+            lblUstId.Text = $"ÜST ID : {prn}";
             treeView1.SelectedNode.Nodes.Clear();
             treeView1.Refresh();
             foreach (var item in urunler.veri)
@@ -437,6 +444,7 @@ namespace VimeoAlbum
                 foreach (var item in urunler.veri)
                 {
                     treeView1.Nodes.Add(item.id.ToString(), item.urunadi.ToString());
+                   
                 }
             }
         }
@@ -455,7 +463,7 @@ namespace VimeoAlbum
         {
             //this.listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             //this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(listBox1_DrawItem);
-         
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -463,7 +471,7 @@ namespace VimeoAlbum
             //selectedListBox = listBox1.SelectedItem.ToString();
 
             listIndex = listBox1.SelectedIndex;
-          
+
 
         }
 
@@ -487,8 +495,8 @@ namespace VimeoAlbum
 
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
-          
-               
+
+
         }
 
         private void lblTemizle_Click(object sender, EventArgs e)
@@ -521,8 +529,77 @@ namespace VimeoAlbum
                     MessageBox.Show("Video yüklenmiştir.");
                 }
             }
-           
 
+
+        }
+
+        private void kitapEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UrunPostModel model = new UrunPostModel()
+            {
+                yid = Convert.ToInt32(comboBox1.SelectedValue),
+                uid = Convert.ToInt32(previousSelectedNode),
+                barkodno = 0,
+                albumkodu = 0
+            };
+
+            frmKitaplar frm = new frmKitaplar(model);
+            frm.ShowDialog();
+        }
+
+        private async void urunSilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Kaydı silmek istiyor musunuz?", "Onay", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                int yid = Convert.ToInt32(comboBox1.SelectedValue);
+                int uid = Convert.ToInt32(previousSelectedNode);
+                var result1 = await urun.UrunApiPost("sil", "id=" + uid + "&yid=" + yid);
+
+                if (result1.eklenenid == 0 && result1.durum)
+                    MessageBox.Show("Ürün Silindi");
+                else
+                    MessageBox.Show(result1.mesaj.ToString());
+            }
+        }
+
+        private async void urunDuzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string yid = comboBox1.SelectedValue.ToString();
+            string id = previousSelectedNode;
+            string uid = parenId;
+              
+            var urunler = await urun.UrunleriGetir(id, uid, yid);
+
+            var result = urunler.veri.SingleOrDefault();
+
+            var urun1 = new UrunPostModel()
+            {
+                aciklama = result.aciklama,
+                albumkodu = result.albumkodu,
+                barkodno = result.barkodno,
+                id = result.id,
+                yid = result.yayinid,
+                urunadi = result.urunadi,
+                uid = result.usturunid,
+                sira = result.sira,
+                link = result.link,
+                ilksoruno = result.ilksoruno
+            };
+
+            frmKitaplar frm = new frmKitaplar(urun1);
+            frm.ShowDialog();
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUrunID_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblUrunID.Text);
         }
     }
 }

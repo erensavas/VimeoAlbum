@@ -66,7 +66,9 @@ namespace VimeoAlbum.Repository
             return d;
         }
 
-        public async Task<int> UrunApiPost(string islem, string queryString)
+    
+
+        public async Task<UrunPostResponseModel> UrunApiPost(string islem, string queryString)
         {
 
             string url = "http://orbim.in/orbiminapi/urun.php";
@@ -83,7 +85,7 @@ namespace VimeoAlbum.Repository
             var responseReader = new StreamReader(r.GetResponseStream());
             var responseData = await responseReader.ReadToEndAsync();
             var d = Newtonsoft.Json.JsonConvert.DeserializeObject<UrunPostResponseModel>(responseData);
-            return d.eklenenid;
+            return d;
         }
 
     }
