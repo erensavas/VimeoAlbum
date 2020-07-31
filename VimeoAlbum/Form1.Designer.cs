@@ -33,13 +33,14 @@
             this.btnExcelVimeo = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.lblTemizle = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renklendirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblUrunID = new System.Windows.Forms.Label();
             this.lblUstId = new System.Windows.Forms.Label();
             this.lblOrbimTemizle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnExcelExport = new System.Windows.Forms.Button();
-            this.lblUrunID = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -98,7 +99,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.progressBar1);
+            this.tabPage1.Controls.Add(this.btnUpload);
             this.tabPage1.Controls.Add(this.lblTemizle);
             this.tabPage1.Controls.Add(this.listBox2);
             this.tabPage1.Controls.Add(this.btnExcelVimeo);
@@ -112,15 +114,15 @@
             this.tabPage1.Text = "VİMEO ALBUM OLUŞTUR";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnUpload
             // 
-            this.button1.Location = new System.Drawing.Point(532, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnUpload.Location = new System.Drawing.Point(845, 16);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(105, 40);
+            this.btnUpload.TabIndex = 10;
+            this.btnUpload.Text = "Video Yükle";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // lblTemizle
             // 
@@ -191,6 +193,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ORBİM YÜKLEME";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblUrunID
+            // 
+            this.lblUrunID.AutoSize = true;
+            this.lblUrunID.Location = new System.Drawing.Point(77, 45);
+            this.lblUrunID.Name = "lblUrunID";
+            this.lblUrunID.Size = new System.Drawing.Size(35, 13);
+            this.lblUrunID.TabIndex = 18;
+            this.lblUrunID.Text = "label3";
+            this.lblUrunID.Click += new System.EventHandler(this.lblUrunID_Click);
             // 
             // lblUstId
             // 
@@ -336,15 +348,12 @@
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
-            // lblUrunID
+            // progressBar1
             // 
-            this.lblUrunID.AutoSize = true;
-            this.lblUrunID.Location = new System.Drawing.Point(77, 45);
-            this.lblUrunID.Name = "lblUrunID";
-            this.lblUrunID.Size = new System.Drawing.Size(35, 13);
-            this.lblUrunID.TabIndex = 18;
-            this.lblUrunID.Text = "label3";
-            this.lblUrunID.Click += new System.EventHandler(this.lblUrunID_Click);
+            this.progressBar1.Location = new System.Drawing.Point(594, 26);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(233, 23);
+            this.progressBar1.TabIndex = 11;
             // 
             // Form1
             // 
@@ -389,13 +398,14 @@
         private System.Windows.Forms.TextBox txtSiraNumarasi;
         private System.Windows.Forms.Label lblTemizle;
         private System.Windows.Forms.Label lblOrbimTemizle;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.ContextMenuStrip contextMenuEkle;
         private System.Windows.Forms.ToolStripMenuItem kitapEkleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem urunSilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem urunDuzenleToolStripMenuItem;
         private System.Windows.Forms.Label lblUstId;
         private System.Windows.Forms.Label lblUrunID;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

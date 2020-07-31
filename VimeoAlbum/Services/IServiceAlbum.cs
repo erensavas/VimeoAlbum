@@ -16,5 +16,6 @@ namespace VimeoAlbum.Services
         Task<List<ModelView>> GetVideoGertir(string VideoAdi);
         Task<long> GetAlbumNo(string albumAdi);
         Task<VimeoVideo> GetVideoVarMi(long VideoId);
+      
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -30,7 +31,7 @@ namespace VimeoAlbum
         public string previousSelectedNode = null;
         public string parenId = null;
         private int listIndex = -1;
-
+        public IVimeoManager vimeoManager;
 
 
         public Form1()
@@ -133,6 +134,10 @@ namespace VimeoAlbum
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            progressBar1.MarqueeAnimationSpeed = 0;
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.Visible = false;
+
             btnAlbumOlustur.Enabled = false;
             btnEkleOrbim.Enabled = false;
             lblUrunID.Text = "";
@@ -515,20 +520,7 @@ namespace VimeoAlbum
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            service = new ServiceAlbum();
-            var result = await service.GetVideoVarMi(435442931);
-
-            if (result != null)
-            {
-                if (result.upload.status == "error")
-                {
-                    MessageBox.Show("Video yüklenmemiştir");
-                }
-                else if (result.upload.status == "complete")
-                {
-                    MessageBox.Show("Video yüklenmiştir.");
-                }
-            }
+          
 
 
         }
@@ -600,6 +592,52 @@ namespace VimeoAlbum
         private void lblUrunID_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(lblUrunID.Text);
+        }
+
+        private async void btnUpload_Click(object sender, EventArgs e)
+        {
+           
+           
+            vimeoManager = new VimeoManager();
+
+            OpenFileDialog dl = new OpenFileDialog();
+            dl.DefaultExt = "mp4";
+            dl.FilterIndex = 2;
+            dl.Title = "mp4 dosyası seçiniz";
+            dl.Filter = "mp4 files (*.mp4)|*.mp4|All files (*.*)|*.*";
+            dl.Multiselect = true;
+            if (dl.ShowDialog() == DialogResult.OK)
+            {
+                progressBar1.MarqueeAnimationSpeed = 40;
+                progressBar1.Visible = true;
+
+                //var filePath = Path.GetTempFileName();
+                //Stream fileStream = dl.OpenFile();
+                //var fileContent = string.Empty;
+
+                foreach (var formFile in dl.FileNames)
+                {
+
+                    FileStream stream = System.IO.File.OpenRead(formFile);
+               
+
+                    VimeoDotNet.Net.BinaryContent content = new VimeoDotNet.Net.BinaryContent(stream.Name);
+
+                    content.OriginalFileName = formFile;
+
+                    VimeoDotNet.Net.IUploadRequest request = await vimeoManager.VideoYukle(content, unchecked((int)stream.Length));
+                    VimeoDotNet.Models.VideoUpdateMetadata metadata = new VimeoDotNet.Models.VideoUpdateMetadata();
+                    metadata.Name = Path.GetFileNameWithoutExtension(formFile);
+
+                     await vimeoManager.VideoMetadataGuncelle(request.ClipId.Value, metadata);
+
+                }
+
+                progressBar1.Visible = false;
+
+            }
+
+
         }
     }
 }
