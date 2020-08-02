@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VimeoAlbum.Models;
@@ -31,6 +32,7 @@ namespace VimeoAlbum
         public string previousSelectedNode = null;
         public string parenId = null;
         private int listIndex = -1;
+        private string listValue = "";
         public IVimeoManager vimeoManager;
 
 
@@ -65,7 +67,7 @@ namespace VimeoAlbum
                     {
                         if (videoTestSayisi.Count > result.Count)
                         {
-                            listBox1.Items.Add($"{item} videoları vimeoda  eksik. Excel : {videoTestSayisi.Count} Vimeo : {result.Count}");
+                            listBox1.Items.Add($"{item}/ videoları vimeoda  eksik. Excel : {videoTestSayisi.Count} Vimeo : {result.Count}");
                         }
                         foreach (var item1 in result)
                         {
@@ -77,11 +79,11 @@ namespace VimeoAlbum
                                 {
                                     if (result1.upload.status == "error")
                                     {
-                                        listBox1.Items.Add($"{item1.VideoId}-{item1.VideoName} Video hatalı ----------------------");
+                                        listBox1.Items.Add($"{item1.VideoName}/{item1.VideoId}/ Video hatalı ----------------------");
                                     }
                                     else if (result1.upload.status == "complete")
                                     {
-                                        listBox1.Items.Add($"{item1.VideoId}-{item1.VideoName} isimli videonun resmi yok. Ama videosu var");
+                                        listBox1.Items.Add($"{item1.VideoName}/{item1.VideoId}/ isimli videonun resmi yok. Ama videosu var");
                                     }
                                 }
 
@@ -123,14 +125,7 @@ namespace VimeoAlbum
 
         }
 
-        //private void listBox()
-        //{
-        //    lst.Name = "listbox";
-        //    lst.Location = new Point(20, 100);
-        //    lst.Width = 350;
-        //    lst.Height = 300;
-        //    this.Controls.Add(lst);
-        //}
+
 
         private async void Form1_Load(object sender, EventArgs e)
         {
@@ -422,7 +417,7 @@ namespace VimeoAlbum
             var urunler = await urun.UrunleriGetir("", node.Name, comboBox1.SelectedValue.ToString());
             string selectedNodes = treeView1.SelectedNode.Name;
             var prn = treeView1.SelectedNode.Parent?.Name;
-           
+
             parenId = prn;
 
             //MessageBox.Show(selectedNodes);
@@ -449,7 +444,7 @@ namespace VimeoAlbum
                 foreach (var item in urunler.veri)
                 {
                     treeView1.Nodes.Add(item.id.ToString(), item.urunadi.ToString());
-                   
+
                 }
             }
         }
@@ -468,14 +463,81 @@ namespace VimeoAlbum
         {
             //this.listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             //this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(listBox1_DrawItem);
+            //listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
+            listValue = listBox1.SelectedItem.ToString();
+            var split = listValue.Split('/');
+            var siraSil = split[0].Split('-');
+            string videoAdi = split[0];
+        
+            videoAdi =videoAdi.Substring(0,videoAdi.LastIndexOf('-'));
+            if (!string.IsNullOrEmpty(videoAdi))
+            {
+                MessageBox.Show(videoAdi);
+                TekAlbumOlustur(videoAdi);
+            }
 
         }
+
+        private async void TekAlbumOlustur(string AlbumAdi)
+        {
+            service = new ServiceAlbum();
+            long albumId = await service.AlbumIdOlustur(AlbumAdi);
+            var videoTestSayisi = excelList.Where(x => x.VideoName == AlbumAdi).ToList();
+
+            if (albumId > 0)
+            {
+
+                char start = '"'; char end = '"';
+                string aranan = string.Concat(start, AlbumAdi, end).ToString();
+                var result = await service.GetVideoGertir(aranan);
+                if (result.Count != 0)
+                {
+                    if (videoTestSayisi.Count > result.Count)
+                    {
+                        listBox1.Items.Add($"{AlbumAdi}/ videoları vimeoda  eksik. Excel : {videoTestSayisi.Count} Vimeo : {result.Count}");
+                    }
+                    foreach (var item1 in result)
+                    {
+                        if (item1.Picture == null)
+                        {
+                            var result1 = await service.GetVideoVarMi(item1.VideoId);  //videonun upload status durumunu alır
+
+                            if (result1 != null)
+                            {
+                                if (result1.upload.status == "error")
+                                {
+                                    listBox1.Items.Add($"{item1.VideoName}/{item1.VideoId}/ Video hatalı ----------------------");
+                                }
+                                else if (result1.upload.status == "complete")
+                                {
+                                    listBox1.Items.Add($"{item1.VideoName}/{item1.VideoId}/ Videonun resmi yok. Ama videosu var");
+                                }
+                            }
+
+                        }
+                    }
+
+                    bool result2 = await service.AlbumeVideoEkleSevices(albumId, result);
+                    if (result2)
+                    {
+                        listBox2.Items.Add($"{AlbumAdi} isimli albüm oluturuldu.");
+                    }
+                }
+                else
+                {
+                    listBox1.Items.Add($"{AlbumAdi} isimli video bulunamadı");
+                }
+
+            }
+
+        }
+
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //selectedListBox = listBox1.SelectedItem.ToString();
 
-            listIndex = listBox1.SelectedIndex;
+            listIndex = listBox1.SelectedIndex; //  MessageBox.Show("Önce seçim yapın");  için gerekli
 
 
         }
@@ -520,7 +582,7 @@ namespace VimeoAlbum
 
         private async void button1_Click(object sender, EventArgs e)
         {
-          
+
 
 
         }
@@ -560,7 +622,7 @@ namespace VimeoAlbum
             string yid = comboBox1.SelectedValue.ToString();
             string id = previousSelectedNode;
             string uid = parenId;
-              
+
             var urunler = await urun.UrunleriGetir(id, uid, yid);
 
             var result = urunler.veri.SingleOrDefault();
@@ -596,8 +658,8 @@ namespace VimeoAlbum
 
         private async void btnUpload_Click(object sender, EventArgs e)
         {
-           
-           
+
+
             vimeoManager = new VimeoManager();
 
             OpenFileDialog dl = new OpenFileDialog();
@@ -619,7 +681,7 @@ namespace VimeoAlbum
                 {
 
                     FileStream stream = System.IO.File.OpenRead(formFile);
-               
+
 
                     VimeoDotNet.Net.BinaryContent content = new VimeoDotNet.Net.BinaryContent(stream.Name);
 
@@ -629,7 +691,7 @@ namespace VimeoAlbum
                     VimeoDotNet.Models.VideoUpdateMetadata metadata = new VimeoDotNet.Models.VideoUpdateMetadata();
                     metadata.Name = Path.GetFileNameWithoutExtension(formFile);
 
-                     await vimeoManager.VideoMetadataGuncelle(request.ClipId.Value, metadata);
+                    await vimeoManager.VideoMetadataGuncelle(request.ClipId.Value, metadata);
 
                 }
 

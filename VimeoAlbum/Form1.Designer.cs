@@ -33,6 +33,7 @@
             this.btnExcelVimeo = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnUpload = new System.Windows.Forms.Button();
             this.lblTemizle = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -57,7 +58,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnExcelExport = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -114,6 +114,13 @@
             this.tabPage1.Text = "VİMEO ALBUM OLUŞTUR";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(594, 26);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(233, 23);
+            this.progressBar1.TabIndex = 11;
+            // 
             // btnUpload
             // 
             this.btnUpload.Location = new System.Drawing.Point(845, 16);
@@ -154,7 +161,6 @@
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(599, 407);
             this.listBox1.TabIndex = 7;
-            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
@@ -164,13 +170,13 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renklendirToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 26);
             // 
             // renklendirToolStripMenuItem
             // 
             this.renklendirToolStripMenuItem.Name = "renklendirToolStripMenuItem";
-            this.renklendirToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.renklendirToolStripMenuItem.Text = "Renklendir";
+            this.renklendirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renklendirToolStripMenuItem.Text = "Album Oluştur";
             this.renklendirToolStripMenuItem.Click += new System.EventHandler(this.renklendirToolStripMenuItem_Click);
             // 
             // tabPage2
@@ -347,13 +353,6 @@
             this.btnExcelExport.Text = "Videoları Excel Yap";
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(594, 26);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(233, 23);
-            this.progressBar1.TabIndex = 11;
             // 
             // Form1
             // 
