@@ -34,7 +34,9 @@ namespace VimeoAlbum
         private int listIndex = -1;
         private string listValue = "";
         public IVimeoManager vimeoManager;
-
+        // ÇOKLU KLASÖRÜ TEK YAPMA
+        Klasorler klasor = new Klasorler();
+        private string targetPath = "";
 
         public Form1()
         {
@@ -124,8 +126,6 @@ namespace VimeoAlbum
 
 
         }
-
-
 
         private async void Form1_Load(object sender, EventArgs e)
         {
@@ -406,7 +406,7 @@ namespace VimeoAlbum
                 btnAlbumOlustur.Enabled = true;
             }
         }
-
+   
         private async void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeNode node = e.Node;
@@ -532,7 +532,6 @@ namespace VimeoAlbum
 
         }
 
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //selectedListBox = listBox1.SelectedItem.ToString();
@@ -559,7 +558,6 @@ namespace VimeoAlbum
             //MessageBox.Show(index.ToString());
         }
 
-
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
 
@@ -580,13 +578,7 @@ namespace VimeoAlbum
             lstLog.Items.Clear();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
-
+       
         private void kitapEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UrunPostModel model = new UrunPostModel()
@@ -645,11 +637,7 @@ namespace VimeoAlbum
             frm.ShowDialog();
 
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void lblUrunID_Click(object sender, EventArgs e)
         {
@@ -701,5 +689,27 @@ namespace VimeoAlbum
 
 
         }
+
+        private async void btnKlasorSec_Click(object sender, EventArgs e)
+        {
+            Klasorler klasor1 = new Klasorler();
+            FolderBrowserDialog dl = new FolderBrowserDialog();
+            dl.SelectedPath = "E:\\";
+
+            if (dl.ShowDialog() == DialogResult.OK)
+            {
+                int sayac = 0;
+               var result= await klasor1.SubFolders(dl.SelectedPath);
+                lblToplamKlasor.Text = $"Toplam dosya sayısı : {result.Count}";
+                targetPath = dl.SelectedPath;
+               
+                sayac= await klasor1.FileCopy(targetPath);
+                MessageBox.Show($"Tamamlandı {sayac}");
+            }
+        }
+
+      
+
+
     }
 }

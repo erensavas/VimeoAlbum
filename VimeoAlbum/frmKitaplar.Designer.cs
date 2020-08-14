@@ -42,6 +42,7 @@
             this.txtAlbumNo = new System.Windows.Forms.TextBox();
             this.txtUstUrunId = new System.Windows.Forms.TextBox();
             this.lblUrunID = new System.Windows.Forms.Label();
+            this.cxbAnaUrun = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnEkle
@@ -161,11 +162,23 @@
             this.lblUrunID.TabIndex = 13;
             this.lblUrunID.Text = "ID";
             // 
+            // cxbAnaUrun
+            // 
+            this.cxbAnaUrun.AutoSize = true;
+            this.cxbAnaUrun.Location = new System.Drawing.Point(201, 173);
+            this.cxbAnaUrun.Name = "cxbAnaUrun";
+            this.cxbAnaUrun.Size = new System.Drawing.Size(95, 17);
+            this.cxbAnaUrun.TabIndex = 14;
+            this.cxbAnaUrun.Text = "Ana Ürün Mü?";
+            this.cxbAnaUrun.UseVisualStyleBackColor = true;
+           
+            // 
             // frmKitaplar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 258);
+            this.Controls.Add(this.cxbAnaUrun);
             this.Controls.Add(this.lblUrunID);
             this.Controls.Add(this.txtUstUrunId);
             this.Controls.Add(this.txtAlbumNo);
@@ -204,5 +217,6 @@
         private System.Windows.Forms.TextBox txtAlbumNo;
         private System.Windows.Forms.TextBox txtUstUrunId;
         private System.Windows.Forms.Label lblUrunID;
+        private System.Windows.Forms.CheckBox cxbAnaUrun;
     }
 }

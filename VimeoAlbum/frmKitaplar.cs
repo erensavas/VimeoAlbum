@@ -64,6 +64,7 @@ namespace VimeoAlbum
                 }
                 else
                 {
+                  
                     model.urunadi = txtKitapAdi.Text;
                     model.sira = Convert.ToInt32(txtSiraNo.Text);
 
@@ -74,6 +75,11 @@ namespace VimeoAlbum
                     if (!string.IsNullOrEmpty(txtBarkodNo.Text))
                     {
                         model.barkodno = Convert.ToInt64(txtBarkodNo.Text);
+                    }
+
+                    if (cxbAnaUrun.Checked)
+                    {
+                        model.uid = 0;
                     }
 
                     int result = await Ekle(model);
@@ -156,6 +162,6 @@ namespace VimeoAlbum
             return result;
         }
 
-
+       
     }
 }

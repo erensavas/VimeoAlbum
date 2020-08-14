@@ -58,12 +58,16 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnExcelExport = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnKlasorSec = new System.Windows.Forms.Button();
+            this.lblToplamKlasor = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.contextMenuEkle.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAlbumOlustur
@@ -91,6 +95,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(1, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -175,7 +180,7 @@
             // renklendirToolStripMenuItem
             // 
             this.renklendirToolStripMenuItem.Name = "renklendirToolStripMenuItem";
-            this.renklendirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renklendirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.renklendirToolStripMenuItem.Text = "Album Oluştur";
             this.renklendirToolStripMenuItem.Click += new System.EventHandler(this.renklendirToolStripMenuItem_Click);
             // 
@@ -239,7 +244,6 @@
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 15;
             this.label2.Text = "SIRA GİRİN";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtSiraNumarasi
             // 
@@ -354,6 +358,36 @@
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.lblToplamKlasor);
+            this.tabPage4.Controls.Add(this.btnKlasorSec);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1044, 480);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "KLASÖR İŞLEMLERİ";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnKlasorSec
+            // 
+            this.btnKlasorSec.Location = new System.Drawing.Point(64, 62);
+            this.btnKlasorSec.Name = "btnKlasorSec";
+            this.btnKlasorSec.Size = new System.Drawing.Size(124, 36);
+            this.btnKlasorSec.TabIndex = 0;
+            this.btnKlasorSec.Text = "Klaör Seçin";
+            this.btnKlasorSec.UseVisualStyleBackColor = true;
+            this.btnKlasorSec.Click += new System.EventHandler(this.btnKlasorSec_Click);
+            // 
+            // lblToplamKlasor
+            // 
+            this.lblToplamKlasor.AutoSize = true;
+            this.lblToplamKlasor.Location = new System.Drawing.Point(64, 25);
+            this.lblToplamKlasor.Name = "lblToplamKlasor";
+            this.lblToplamKlasor.Size = new System.Drawing.Size(0, 13);
+            this.lblToplamKlasor.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,6 +405,8 @@
             this.tabPage2.PerformLayout();
             this.contextMenuEkle.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -405,6 +441,9 @@
         private System.Windows.Forms.Label lblUstId;
         private System.Windows.Forms.Label lblUrunID;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnKlasorSec;
+        private System.Windows.Forms.Label lblToplamKlasor;
     }
 }
 

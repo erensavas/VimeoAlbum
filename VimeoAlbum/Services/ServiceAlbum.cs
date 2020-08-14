@@ -75,13 +75,26 @@ namespace VimeoAlbum.Services
             for (int i = 1; i <= totalPages; i++)
             {
                 Paginated<Video> videolar = await vimeoManager.VideolariGetirAsync(i, VideoAdi);
+
+               
+
+
                videolar.Data= videolar.Data.OrderBy(x => x.CreatedTime).ToList();
 
 
                 foreach (var item in videolar.Data)
                 {
+                   
+                    // eğer videnamenin sonunda (1) gibi parantez varsa ayıkla
+                    int parantez = item.Name.IndexOf('(');
+                    if (parantez != -1)
+                    {
+                        item.Name = item.Name.Substring(0, parantez);
+                    }
+
                     var videoNumber = item.Name.Split('-');
                     // eğer aynı numaralı 2 video varsa resmi olmayanı sil
+
 
                     foreach (var item1 in AllVideos)
                     {
