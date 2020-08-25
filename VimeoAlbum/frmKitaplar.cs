@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VimeoAlbum.Models;
 using VimeoAlbum.Repository;
+using VimeoAlbum.Services;
 
 namespace VimeoAlbum
 {
@@ -18,6 +19,7 @@ namespace VimeoAlbum
     {
         UrunPostModel model = new UrunPostModel();
         Urunler urun = new Urunler();
+        public IServiceAlbum service;
 
         public frmKitaplar()
         {
@@ -33,6 +35,8 @@ namespace VimeoAlbum
         private void frmKitaplar_Load(object sender, EventArgs e)
         {
             label1.Text = $"Gelen ID : {StaticAyar.SelectedNode}";
+            txtAlbumAdiSearch.Visible = false;
+            comboBox1.Visible = false;
 
             if (model.urunadi != null)
             {
@@ -162,6 +166,46 @@ namespace VimeoAlbum
             return result;
         }
 
-       
+        private void btnAlbumGetir_Click(object sender, EventArgs e)
+        {
+            txtAlbumNo.Text = comboBox1.SelectedValue.ToString();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+                txtAlbumNo.Text = comboBox1.SelectedValue.ToString();
+          
+           
+        }
+
+        private async void txtAlbumAdiSearch_TextChanged(object sender, EventArgs e)
+        { 
+            comboBox1.Text = "---Seçiniz---";
+            if (txtAlbumAdiSearch.Text.Length > 5)
+            {
+                service = new ServiceAlbum();
+                var result = await service.GetAlbumAdi(txtAlbumAdiSearch.Text);
+               
+                comboBox1.DataSource = result;
+                comboBox1.DisplayMember = "Name";
+                comboBox1.ValueMember = "id";
+                comboBox1.Text = "---Seçiniz---";
+            } 
+        }
+
+        private void ckbVimeAlbum_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbVimeAlbum.Checked)
+            {
+                txtAlbumAdiSearch.Visible = true;
+                comboBox1.Visible = true;
+            }
+            else
+            {
+                txtAlbumAdiSearch.Visible = false;
+                comboBox1.Visible = false;
+            }
+        }
     }
 }

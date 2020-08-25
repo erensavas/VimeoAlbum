@@ -40,6 +40,37 @@ namespace VimeoAlbum.Repository
 
         }
 
+        public async Task<VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album>> AlbumleriGetirHizliAsync(int Page, string Query)
+        {
+            VimeoDotNet.VimeoClient client = new VimeoDotNet.VimeoClient(TokenKey.Token);
+            VimeoDotNet.Parameters.GetAlbumsParameters parametreler = new VimeoDotNet.Parameters.GetAlbumsParameters();
+            parametreler.Page = Page;
+            parametreler.PerPage = 50;
+            parametreler.Query = Query;
+            parametreler.Sort = GetAlbumsSortOption.Date;
+            parametreler.Direction = GetAlbumsSortDirectionOption.Desc;
+            parametreler.Fields = "name,uri";
+
+
+            try
+            {
+
+                VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album> albumler = await client.GetAlbumsAsync(VimeoDotNet.Models.UserId.Me, parametreler);
+                return albumler;
+            }
+            catch (Exception ex)
+            {
+                if (client.RateLimitRemaining == 0)
+                {
+                    throw new Exception("Çok fazla istek nedeniyle api erişimi engellendi." + (client.RateLimitReset.AddHours(1) - System.DateTime.Now).TotalMinutes + " dakika sonra tekrar deneyiniz.");
+                }
+                else
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public async Task<VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album>> AlbumleriGetirAsync(int Page, string Query)
         {
             VimeoDotNet.VimeoClient client = new VimeoDotNet.VimeoClient(TokenKey.Token);
@@ -52,7 +83,7 @@ namespace VimeoAlbum.Repository
             parametreler.Sort = GetAlbumsSortOption.Date;
             parametreler.Direction = GetAlbumsSortDirectionOption.Desc;
 
-
+            
             VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album> albumler = await client.GetAlbumsAsync(VimeoDotNet.Models.UserId.Me, fields, parametreler);
             return albumler;
         }
@@ -186,15 +217,7 @@ namespace VimeoAlbum.Repository
         public async Task<Album> AlbumGetir(long albumId)
         {
 
-
-
-
-
-
-
             VimeoDotNet.VimeoClient client1 = new VimeoDotNet.VimeoClient(TokenKey.Token);
-
-
 
             var result = await client1.GetAlbumAsync(VimeoDotNet.Models.UserId.Me, albumId);
 

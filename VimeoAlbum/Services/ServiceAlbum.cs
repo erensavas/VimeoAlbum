@@ -179,7 +179,48 @@ namespace VimeoAlbum.Services
             }
         }
 
-      
+      public async Task<List<AlbumOlusturModel>> GetAlbumAdi(string albumAdi)
+        {
+            vimeoManager = new VimeoManager();
+            string search = String.Format("{0}", albumAdi);
+            var albumler = await vimeoManager.AlbumleriGetirHizliAsync(1, search);
+            var albumAl = new List<AlbumOlusturModel>();
+
+            int count = albumler.Total;
+            if (count > 0)
+            {
+                var album = albumler.Data.Select(a => new
+                {
+                    id = a.GetAlbumId(),
+                    text = a.Name
+                }).ToList();
+
+
+                foreach (var item in album)
+                {
+                    albumAl.Add(
+                        new AlbumOlusturModel
+                        {
+                            id = item.id.Value,
+                            Name = item.text
+                        });
+                }
+
+                //albumNo = album.Select(x => x.id.Value).FirstOrDefault();
+
+            }
+            else
+                return null;
+
+            return albumAl;
+        }
+
+        public async Task<Album> GetAlbumName(long AlbumId)
+        {
+            vimeoManager = new VimeoManager();
+            var result = await vimeoManager.AlbumGetir(AlbumId);
+            return result;
+        }
 
     }
 }

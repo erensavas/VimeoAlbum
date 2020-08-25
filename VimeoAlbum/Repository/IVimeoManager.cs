@@ -12,6 +12,7 @@ namespace VimeoAlbum.Repository
     public interface IVimeoManager
     {
         Task<JObject> GetUserIdAndAccessToken(string code);
+        Task<VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album>> AlbumleriGetirHizliAsync(int Page, string Query);
         Task<VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album>> AlbumleriGetirAsync(int Page, string Query);
         Task<VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Album>> AlbumleriGetirAsync();
         Task<VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Video>> VideolariGetirAsync(int? Page, string query);
@@ -31,5 +32,8 @@ namespace VimeoAlbum.Repository
         Task<bool> VideoSil(long videoId);
         Task<Paginated<Video>> VideolariGetirBirAdetAsync(int? Page, string query);
         Task<Video> VideolariGetirDenemeAsync();
+      
+
+
     }
 }

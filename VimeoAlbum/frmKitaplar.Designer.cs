@@ -43,6 +43,10 @@
             this.txtUstUrunId = new System.Windows.Forms.TextBox();
             this.lblUrunID = new System.Windows.Forms.Label();
             this.cxbAnaUrun = new System.Windows.Forms.CheckBox();
+            this.btnAlbumGetir = new System.Windows.Forms.Button();
+            this.ckbVimeAlbum = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtAlbumAdiSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnEkle
@@ -165,19 +169,61 @@
             // cxbAnaUrun
             // 
             this.cxbAnaUrun.AutoSize = true;
-            this.cxbAnaUrun.Location = new System.Drawing.Point(201, 173);
+            this.cxbAnaUrun.Location = new System.Drawing.Point(199, 173);
             this.cxbAnaUrun.Name = "cxbAnaUrun";
             this.cxbAnaUrun.Size = new System.Drawing.Size(95, 17);
             this.cxbAnaUrun.TabIndex = 14;
             this.cxbAnaUrun.Text = "Ana Ürün Mü?";
             this.cxbAnaUrun.UseVisualStyleBackColor = true;
-           
+            // 
+            // btnAlbumGetir
+            // 
+            this.btnAlbumGetir.Location = new System.Drawing.Point(537, 109);
+            this.btnAlbumGetir.Name = "btnAlbumGetir";
+            this.btnAlbumGetir.Size = new System.Drawing.Size(75, 23);
+            this.btnAlbumGetir.TabIndex = 15;
+            this.btnAlbumGetir.Text = "Album Getir";
+            this.btnAlbumGetir.UseVisualStyleBackColor = true;
+            this.btnAlbumGetir.Visible = false;
+            this.btnAlbumGetir.Click += new System.EventHandler(this.btnAlbumGetir_Click);
+            // 
+            // ckbVimeAlbum
+            // 
+            this.ckbVimeAlbum.AutoSize = true;
+            this.ckbVimeAlbum.Location = new System.Drawing.Point(199, 142);
+            this.ckbVimeAlbum.Name = "ckbVimeAlbum";
+            this.ckbVimeAlbum.Size = new System.Drawing.Size(123, 17);
+            this.ckbVimeAlbum.TabIndex = 16;
+            this.ckbVimeAlbum.Text = "Vimeodan Albüm Bul";
+            this.ckbVimeAlbum.UseVisualStyleBackColor = true;
+            this.ckbVimeAlbum.CheckedChanged += new System.EventHandler(this.ckbVimeAlbum_CheckedChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(324, 166);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(293, 21);
+            this.comboBox1.TabIndex = 17;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // txtAlbumAdiSearch
+            // 
+            this.txtAlbumAdiSearch.Location = new System.Drawing.Point(324, 142);
+            this.txtAlbumAdiSearch.Name = "txtAlbumAdiSearch";
+            this.txtAlbumAdiSearch.Size = new System.Drawing.Size(293, 20);
+            this.txtAlbumAdiSearch.TabIndex = 18;
+            this.txtAlbumAdiSearch.TextChanged += new System.EventHandler(this.txtAlbumAdiSearch_TextChanged);
             // 
             // frmKitaplar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 258);
+            this.ClientSize = new System.Drawing.Size(629, 278);
+            this.Controls.Add(this.txtAlbumAdiSearch);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.ckbVimeAlbum);
+            this.Controls.Add(this.btnAlbumGetir);
             this.Controls.Add(this.cxbAnaUrun);
             this.Controls.Add(this.lblUrunID);
             this.Controls.Add(this.txtUstUrunId);
@@ -194,6 +240,7 @@
             this.Controls.Add(this.txtKitapAdi);
             this.Controls.Add(this.btnEkle);
             this.Name = "frmKitaplar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmKitaplar";
             this.Load += new System.EventHandler(this.frmKitaplar_Load);
             this.ResumeLayout(false);
@@ -218,5 +265,9 @@
         private System.Windows.Forms.TextBox txtUstUrunId;
         private System.Windows.Forms.Label lblUrunID;
         private System.Windows.Forms.CheckBox cxbAnaUrun;
+        private System.Windows.Forms.Button btnAlbumGetir;
+        private System.Windows.Forms.CheckBox ckbVimeAlbum;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtAlbumAdiSearch;
     }
 }

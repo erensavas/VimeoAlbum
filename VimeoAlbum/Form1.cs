@@ -708,8 +708,116 @@ namespace VimeoAlbum
             }
         }
 
-      
+        private async void sonrakiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StaticAyar.OnayKodu = "";
+            frmOnay onay = new frmOnay();
+            onay.ShowDialog();
+
+            if (StaticAyar.OnayKodu =="OK")
+            {
+                DialogResult resultOnay = MessageBox.Show("Güncelleme yapmadan önce excelden kopyalama yapınız?", "Onay", MessageBoxButtons.YesNoCancel);
+                if (resultOnay == DialogResult.Yes)
+                {
+                    lstLog.Items.Clear();
+                    string selectedNodesText = treeView1.SelectedNode.Text;
+                    string selectedNodesName = treeView1.SelectedNode.Name;
+                    string yid = comboBox1.SelectedValue.ToString();
+                    string uid = selectedNodesName;
 
 
+                    List<string> liste = new List<string>();
+
+
+                    // Look for a file drop.
+                    if (Clipboard.ContainsText(TextDataFormat.Text))
+                    {
+                        var files = Clipboard.GetText(TextDataFormat.Text);
+                        liste.AddRange(files.Split(new[] { Environment.NewLine },
+                                          StringSplitOptions.RemoveEmptyEntries));
+                    }
+
+
+
+                    TreeNode node = treeView1.SelectedNode;
+                    int count = node.Nodes.Count;
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        // treeView1.SelectedNode = node.NextNode;
+                        this.treeView1.SelectedNode = node.Nodes[i];
+
+
+                        string id = treeView1.SelectedNode.Name;
+
+
+                        var urunler = await urun.UrunleriGetir(id, uid, yid);
+
+                        var result = urunler.veri.SingleOrDefault();
+
+                        var urun1 = new UrunPostModel()
+                        {
+                            aciklama = result.aciklama,
+                            albumkodu = result.albumkodu,
+                            barkodno = Convert.ToInt64(liste[i]),
+                            id = result.id,
+                            yid = result.yayinid,
+                            urunadi = result.urunadi,
+                            uid = result.usturunid,
+                            sira = result.sira,
+                            link = result.link,
+                            ilksoruno = result.ilksoruno
+                        };
+
+                        var DuzenleSonuc = await urun.UrunDuzenle(urun1);
+
+                        lstLog.Items.Add(treeView1.SelectedNode.Name + "---" + result.urunadi + "---" + result.barkodno + "---" + liste[i]);
+
+                    }
+                    MessageBox.Show("Güncelleme işlemi bitti");
+                }
+                else
+                {
+                    return;
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Lütfen onay kodunu doğru giriniz!");
+                return;
+            }
+
+           
+
+        }
+
+        private async void btnAlbumIdBul_Click(object sender, EventArgs e)
+        {
+            service = new ServiceAlbum();
+            lsbAlbumAdi.Items.Clear();
+            if (string.IsNullOrEmpty(txtAlbumID.Text))
+            {
+                MessageBox.Show("Lütfen album id giriniz!");
+            }
+            else
+            {
+                var result = await service.GetAlbumName(Convert.ToInt64(txtAlbumID.Text));
+             
+                 lsbAlbumAdi.Items.Add(result.Name);
+                if (!string.IsNullOrEmpty(result.Name))
+                {
+                    txtAlbumID.Clear();
+                }
+            }
+        }
+
+        private void lsbAlbumAdi_DoubleClick(object sender, EventArgs e)
+        {
+            if (lsbAlbumAdi.SelectedItem !=null)
+            {
+                Clipboard.SetText(lsbAlbumAdi.SelectedItem.ToString());
+            }
+        }
     }
 }

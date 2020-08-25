@@ -66,8 +66,6 @@ namespace VimeoAlbum.Repository
             return d;
         }
 
-    
-
         public async Task<UrunPostResponseModel> UrunApiPost(string islem, string queryString)
         {
 
@@ -87,6 +85,21 @@ namespace VimeoAlbum.Repository
             var d = Newtonsoft.Json.JsonConvert.DeserializeObject<UrunPostResponseModel>(responseData);
             return d;
         }
+
+        public async Task<UrunPostResponseModel> UrunDuzenle(UrunPostModel model)
+        {
+            var properties = from p in model.GetType().GetProperties()
+                             where p.GetValue(model, null) != null
+                             select p.Name + "=" + WebUtility.UrlEncode(p.GetValue(model, null).ToString());
+
+            // queryString will be set to "Id=1&State=26&Prefix=f&Index=oo"                  
+            string queryString = String.Join("&", properties.ToArray());
+
+
+            var result = await  UrunApiPost("duzenle", queryString);
+            return result;
+        }
+
 
     }
 }

@@ -54,13 +54,21 @@
             this.kitapEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.urunSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.urunDuzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sonrakiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExcelOrbim = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnExcelExport = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnKlasorSec = new System.Windows.Forms.Button();
             this.lblToplamKlasor = new System.Windows.Forms.Label();
+            this.btnKlasorSec = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnAlbumIdBul = new System.Windows.Forms.Button();
+            this.txtAlbumID = new System.Windows.Forms.TextBox();
+            this.lsbAlbumAdi = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -68,6 +76,7 @@
             this.contextMenuEkle.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAlbumOlustur
@@ -96,6 +105,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(1, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -239,17 +249,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(265, 46);
+            this.label2.Location = new System.Drawing.Point(253, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 15;
-            this.label2.Text = "SIRA GİRİN";
+            this.label2.Text = "SIRA GİRİN(test)";
             // 
             // txtSiraNumarasi
             // 
-            this.txtSiraNumarasi.Location = new System.Drawing.Point(336, 41);
+            this.txtSiraNumarasi.Location = new System.Drawing.Point(347, 41);
             this.txtSiraNumarasi.Name = "txtSiraNumarasi";
-            this.txtSiraNumarasi.Size = new System.Drawing.Size(64, 20);
+            this.txtSiraNumarasi.Size = new System.Drawing.Size(53, 20);
             this.txtSiraNumarasi.TabIndex = 14;
             // 
             // label1
@@ -266,7 +276,7 @@
             this.lstLog.FormattingEnabled = true;
             this.lstLog.Location = new System.Drawing.Point(406, 63);
             this.lstLog.Name = "lstLog";
-            this.lstLog.Size = new System.Drawing.Size(568, 407);
+            this.lstLog.Size = new System.Drawing.Size(592, 407);
             this.lstLog.TabIndex = 12;
             // 
             // btnEkleOrbim
@@ -293,30 +303,45 @@
             this.contextMenuEkle.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kitapEkleToolStripMenuItem,
             this.urunSilToolStripMenuItem,
-            this.urunDuzenleToolStripMenuItem});
+            this.urunDuzenleToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.sonrakiToolStripMenuItem});
             this.contextMenuEkle.Name = "contextMenuEkle";
-            this.contextMenuEkle.Size = new System.Drawing.Size(146, 70);
+            this.contextMenuEkle.Size = new System.Drawing.Size(225, 114);
             // 
             // kitapEkleToolStripMenuItem
             // 
             this.kitapEkleToolStripMenuItem.Name = "kitapEkleToolStripMenuItem";
-            this.kitapEkleToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.kitapEkleToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.kitapEkleToolStripMenuItem.Text = "Ürün Ekle";
             this.kitapEkleToolStripMenuItem.Click += new System.EventHandler(this.kitapEkleToolStripMenuItem_Click);
             // 
             // urunSilToolStripMenuItem
             // 
             this.urunSilToolStripMenuItem.Name = "urunSilToolStripMenuItem";
-            this.urunSilToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.urunSilToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.urunSilToolStripMenuItem.Text = "Ürün Sil";
             this.urunSilToolStripMenuItem.Click += new System.EventHandler(this.urunSilToolStripMenuItem_Click);
             // 
             // urunDuzenleToolStripMenuItem
             // 
             this.urunDuzenleToolStripMenuItem.Name = "urunDuzenleToolStripMenuItem";
-            this.urunDuzenleToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.urunDuzenleToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.urunDuzenleToolStripMenuItem.Text = "Ürün Düzenle";
             this.urunDuzenleToolStripMenuItem.Click += new System.EventHandler(this.urunDuzenleToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(224, 22);
+            this.toolStripMenuItem2.Text = "------------------------------";
+            // 
+            // sonrakiToolStripMenuItem
+            // 
+            this.sonrakiToolStripMenuItem.Name = "sonrakiToolStripMenuItem";
+            this.sonrakiToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.sonrakiToolStripMenuItem.Text = "QR Code Düzenle";
+            this.sonrakiToolStripMenuItem.Click += new System.EventHandler(this.sonrakiToolStripMenuItem_Click);
             // 
             // btnExcelOrbim
             // 
@@ -370,6 +395,14 @@
             this.tabPage4.Text = "KLASÖR İŞLEMLERİ";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // lblToplamKlasor
+            // 
+            this.lblToplamKlasor.AutoSize = true;
+            this.lblToplamKlasor.Location = new System.Drawing.Point(64, 25);
+            this.lblToplamKlasor.Name = "lblToplamKlasor";
+            this.lblToplamKlasor.Size = new System.Drawing.Size(0, 13);
+            this.lblToplamKlasor.TabIndex = 1;
+            // 
             // btnKlasorSec
             // 
             this.btnKlasorSec.Location = new System.Drawing.Point(64, 62);
@@ -380,13 +413,64 @@
             this.btnKlasorSec.UseVisualStyleBackColor = true;
             this.btnKlasorSec.Click += new System.EventHandler(this.btnKlasorSec_Click);
             // 
-            // lblToplamKlasor
+            // tabPage5
             // 
-            this.lblToplamKlasor.AutoSize = true;
-            this.lblToplamKlasor.Location = new System.Drawing.Point(64, 25);
-            this.lblToplamKlasor.Name = "lblToplamKlasor";
-            this.lblToplamKlasor.Size = new System.Drawing.Size(0, 13);
-            this.lblToplamKlasor.TabIndex = 1;
+            this.tabPage5.Controls.Add(this.label4);
+            this.tabPage5.Controls.Add(this.label3);
+            this.tabPage5.Controls.Add(this.lsbAlbumAdi);
+            this.tabPage5.Controls.Add(this.txtAlbumID);
+            this.tabPage5.Controls.Add(this.btnAlbumIdBul);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1044, 480);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "ALBUM BULMA";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnAlbumIdBul
+            // 
+            this.btnAlbumIdBul.Location = new System.Drawing.Point(272, 60);
+            this.btnAlbumIdBul.Name = "btnAlbumIdBul";
+            this.btnAlbumIdBul.Size = new System.Drawing.Size(127, 23);
+            this.btnAlbumIdBul.TabIndex = 0;
+            this.btnAlbumIdBul.Text = "ALBUM ID BUL";
+            this.btnAlbumIdBul.UseVisualStyleBackColor = true;
+            this.btnAlbumIdBul.Click += new System.EventHandler(this.btnAlbumIdBul_Click);
+            // 
+            // txtAlbumID
+            // 
+            this.txtAlbumID.Location = new System.Drawing.Point(138, 62);
+            this.txtAlbumID.Name = "txtAlbumID";
+            this.txtAlbumID.Size = new System.Drawing.Size(128, 20);
+            this.txtAlbumID.TabIndex = 1;
+            // 
+            // lsbAlbumAdi
+            // 
+            this.lsbAlbumAdi.FormattingEnabled = true;
+            this.lsbAlbumAdi.Location = new System.Drawing.Point(61, 99);
+            this.lsbAlbumAdi.Name = "lsbAlbumAdi";
+            this.lsbAlbumAdi.Size = new System.Drawing.Size(338, 95);
+            this.lsbAlbumAdi.TabIndex = 2;
+            this.lsbAlbumAdi.DoubleClick += new System.EventHandler(this.lsbAlbumAdi_DoubleClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(58, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Album ID Girin";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(58, 197);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(168, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Üzerine 2 defa tıklarsanız kopyalar";
             // 
             // Form1
             // 
@@ -407,6 +491,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -444,6 +530,14 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnKlasorSec;
         private System.Windows.Forms.Label lblToplamKlasor;
+        private System.Windows.Forms.ToolStripMenuItem sonrakiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox lsbAlbumAdi;
+        private System.Windows.Forms.TextBox txtAlbumID;
+        private System.Windows.Forms.Button btnAlbumIdBul;
+        private System.Windows.Forms.Label label4;
     }
 }
 

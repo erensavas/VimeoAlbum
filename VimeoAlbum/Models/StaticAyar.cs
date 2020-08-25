@@ -9,5 +9,6 @@ namespace VimeoAlbum.Models
     public static class StaticAyar
     {
         public static string SelectedNode { get; set; }
+        public static string OnayKodu { get; set; }
     }
 }
