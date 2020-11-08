@@ -222,5 +222,30 @@ namespace VimeoAlbum.Services
             return result;
         }
 
+        public async Task UpdateVideoMetadata(long VideoId, string NewVideoName)
+        {
+            try
+            {
+                vimeoManager = new VimeoManager();
+                VimeoDotNet.Models.VideoUpdateMetadata metadata = new VimeoDotNet.Models.VideoUpdateMetadata();
+                metadata.Name = NewVideoName;
+                await vimeoManager.VideoMetadataGuncelle(VideoId, metadata);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
+        }
+
+        public async Task<Video> GetVideoId(string oldVideoName)
+        {
+            vimeoManager = new VimeoManager();
+            VimeoDotNet.Models.Paginated<VimeoDotNet.Models.Video> videolarTek = await vimeoManager.VideolariGetirBirAdetAsync(1, oldVideoName);
+            var result = videolarTek.Data.FirstOrDefault();
+            return result;
+        }
+
     }
 }

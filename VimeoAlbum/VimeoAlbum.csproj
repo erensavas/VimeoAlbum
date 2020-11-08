@@ -88,6 +88,7 @@
     <Compile Include="Models\AlbumOlusturModel.cs" />
     <Compile Include="Models\ExcelModel.cs" />
     <Compile Include="Models\ExcelViewModel.cs" />
+    <Compile Include="Models\files.cs" />
     <Compile Include="Models\KlasorModel.cs" />
     <Compile Include="Models\ModelView.cs" />
     <Compile Include="Models\StaticAyar.cs" />

@@ -17,5 +17,6 @@ namespace VimeoAlbum.Models
         public string width { get; set; }
         public string height { get; set; }
         public upload upload { get; set; }
+        public List<files> files { get; set; }
     }
 }

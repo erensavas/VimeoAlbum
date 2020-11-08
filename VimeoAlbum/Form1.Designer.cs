@@ -33,6 +33,9 @@
             this.btnExcelVimeo = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtManuelAlbumUpload = new System.Windows.Forms.TextBox();
+            this.btnManuelAlbumUpload = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnUpload = new System.Windows.Forms.Button();
             this.lblTemizle = new System.Windows.Forms.Label();
@@ -56,6 +59,7 @@
             this.urunDuzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sonrakiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.soruSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExcelOrbim = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -64,11 +68,32 @@
             this.lblToplamKlasor = new System.Windows.Forms.Label();
             this.btnKlasorSec = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnAlbumIdBul = new System.Windows.Forms.Button();
-            this.txtAlbumID = new System.Windows.Forms.TextBox();
-            this.lsbAlbumAdi = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnAlbumIdExcelExport = new System.Windows.Forms.Button();
+            this.lbxAlbumIdleri = new System.Windows.Forms.ListBox();
+            this.btnAlbumImport = new System.Windows.Forms.Button();
+            this.btnAlbumIdAl = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lsbAlbumAdi = new System.Windows.Forms.ListBox();
+            this.txtAlbumID = new System.Windows.Forms.TextBox();
+            this.btnAlbumIdBul = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.lblManuelDomainAdd = new System.Windows.Forms.Label();
+            this.txtManuelDomainAdd = new System.Windows.Forms.TextBox();
+            this.btnManuleDomainAdd = new System.Windows.Forms.Button();
+            this.cmbDomainName = new System.Windows.Forms.ComboBox();
+            this.lbxDomainEkle = new System.Windows.Forms.ListBox();
+            this.domainExcelImport = new System.Windows.Forms.Button();
+            this.domainOlustur = new System.Windows.Forms.Button();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.lblVideoId = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnVideoIsmiDegistir = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDegisecekVideoAdi = new System.Windows.Forms.TextBox();
+            this.txtArananVideoAdi = new System.Windows.Forms.TextBox();
+            this.chkManualDomainAdd = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -77,13 +102,15 @@
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAlbumOlustur
             // 
-            this.btnAlbumOlustur.Location = new System.Drawing.Point(134, 16);
+            this.btnAlbumOlustur.Location = new System.Drawing.Point(111, 15);
             this.btnAlbumOlustur.Name = "btnAlbumOlustur";
-            this.btnAlbumOlustur.Size = new System.Drawing.Size(135, 40);
+            this.btnAlbumOlustur.Size = new System.Drawing.Size(106, 40);
             this.btnAlbumOlustur.TabIndex = 1;
             this.btnAlbumOlustur.Text = "Album Oluştur";
             this.btnAlbumOlustur.UseVisualStyleBackColor = true;
@@ -93,7 +120,7 @@
             // 
             this.btnExcelVimeo.Location = new System.Drawing.Point(10, 16);
             this.btnExcelVimeo.Name = "btnExcelVimeo";
-            this.btnExcelVimeo.Size = new System.Drawing.Size(118, 40);
+            this.btnExcelVimeo.Size = new System.Drawing.Size(95, 40);
             this.btnExcelVimeo.TabIndex = 4;
             this.btnExcelVimeo.Text = "Excel İmport";
             this.btnExcelVimeo.UseVisualStyleBackColor = true;
@@ -106,6 +133,8 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(1, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -114,6 +143,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox1);
+            this.tabPage1.Controls.Add(this.txtManuelAlbumUpload);
+            this.tabPage1.Controls.Add(this.btnManuelAlbumUpload);
             this.tabPage1.Controls.Add(this.progressBar1);
             this.tabPage1.Controls.Add(this.btnUpload);
             this.tabPage1.Controls.Add(this.lblTemizle);
@@ -129,16 +161,45 @@
             this.tabPage1.Text = "VİMEO ALBUM OLUŞTUR";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(311, 8);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(129, 17);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "Manuel Albüm Oluştur";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // txtManuelAlbumUpload
+            // 
+            this.txtManuelAlbumUpload.Location = new System.Drawing.Point(311, 29);
+            this.txtManuelAlbumUpload.Name = "txtManuelAlbumUpload";
+            this.txtManuelAlbumUpload.Size = new System.Drawing.Size(315, 20);
+            this.txtManuelAlbumUpload.TabIndex = 13;
+            // 
+            // btnManuelAlbumUpload
+            // 
+            this.btnManuelAlbumUpload.Location = new System.Drawing.Point(632, 16);
+            this.btnManuelAlbumUpload.Name = "btnManuelAlbumUpload";
+            this.btnManuelAlbumUpload.Size = new System.Drawing.Size(89, 40);
+            this.btnManuelAlbumUpload.TabIndex = 12;
+            this.btnManuelAlbumUpload.Text = "Manuel Albüm Oluştur";
+            this.btnManuelAlbumUpload.UseVisualStyleBackColor = true;
+            this.btnManuelAlbumUpload.Visible = false;
+            this.btnManuelAlbumUpload.Click += new System.EventHandler(this.btnManuelAlbumUpload_Click);
+            // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(594, 26);
+            this.progressBar1.Location = new System.Drawing.Point(727, 26);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(233, 23);
+            this.progressBar1.Size = new System.Drawing.Size(199, 23);
             this.progressBar1.TabIndex = 11;
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(845, 16);
+            this.btnUpload.Location = new System.Drawing.Point(932, 17);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(105, 40);
             this.btnUpload.TabIndex = 10;
@@ -151,7 +212,7 @@
             this.lblTemizle.AutoSize = true;
             this.lblTemizle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblTemizle.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblTemizle.Location = new System.Drawing.Point(290, 30);
+            this.lblTemizle.Location = new System.Drawing.Point(223, 29);
             this.lblTemizle.Name = "lblTemizle";
             this.lblTemizle.Size = new System.Drawing.Size(53, 13);
             this.lblTemizle.TabIndex = 9;
@@ -305,9 +366,10 @@
             this.urunSilToolStripMenuItem,
             this.urunDuzenleToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.sonrakiToolStripMenuItem});
+            this.sonrakiToolStripMenuItem,
+            this.soruSilToolStripMenuItem});
             this.contextMenuEkle.Name = "contextMenuEkle";
-            this.contextMenuEkle.Size = new System.Drawing.Size(225, 114);
+            this.contextMenuEkle.Size = new System.Drawing.Size(225, 136);
             // 
             // kitapEkleToolStripMenuItem
             // 
@@ -342,6 +404,13 @@
             this.sonrakiToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.sonrakiToolStripMenuItem.Text = "QR Code Düzenle";
             this.sonrakiToolStripMenuItem.Click += new System.EventHandler(this.sonrakiToolStripMenuItem_Click);
+            // 
+            // soruSilToolStripMenuItem
+            // 
+            this.soruSilToolStripMenuItem.Name = "soruSilToolStripMenuItem";
+            this.soruSilToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.soruSilToolStripMenuItem.Text = "Soru Sil";
+            this.soruSilToolStripMenuItem.Click += new System.EventHandler(this.soruSilToolStripMenuItem_Click);
             // 
             // btnExcelOrbim
             // 
@@ -415,6 +484,10 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnAlbumIdExcelExport);
+            this.tabPage5.Controls.Add(this.lbxAlbumIdleri);
+            this.tabPage5.Controls.Add(this.btnAlbumImport);
+            this.tabPage5.Controls.Add(this.btnAlbumIdAl);
             this.tabPage5.Controls.Add(this.label4);
             this.tabPage5.Controls.Add(this.label3);
             this.tabPage5.Controls.Add(this.lsbAlbumAdi);
@@ -428,49 +501,263 @@
             this.tabPage5.Text = "ALBUM BULMA";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // btnAlbumIdBul
+            // btnAlbumIdExcelExport
             // 
-            this.btnAlbumIdBul.Location = new System.Drawing.Point(272, 60);
-            this.btnAlbumIdBul.Name = "btnAlbumIdBul";
-            this.btnAlbumIdBul.Size = new System.Drawing.Size(127, 23);
-            this.btnAlbumIdBul.TabIndex = 0;
-            this.btnAlbumIdBul.Text = "ALBUM ID BUL";
-            this.btnAlbumIdBul.UseVisualStyleBackColor = true;
-            this.btnAlbumIdBul.Click += new System.EventHandler(this.btnAlbumIdBul_Click);
+            this.btnAlbumIdExcelExport.Location = new System.Drawing.Point(683, 12);
+            this.btnAlbumIdExcelExport.Name = "btnAlbumIdExcelExport";
+            this.btnAlbumIdExcelExport.Size = new System.Drawing.Size(135, 40);
+            this.btnAlbumIdExcelExport.TabIndex = 12;
+            this.btnAlbumIdExcelExport.Text = "Album Id Export";
+            this.btnAlbumIdExcelExport.UseVisualStyleBackColor = true;
+            this.btnAlbumIdExcelExport.Click += new System.EventHandler(this.btnAlbumIdExcelExport_Click);
             // 
-            // txtAlbumID
+            // lbxAlbumIdleri
             // 
-            this.txtAlbumID.Location = new System.Drawing.Point(138, 62);
-            this.txtAlbumID.Name = "txtAlbumID";
-            this.txtAlbumID.Size = new System.Drawing.Size(128, 20);
-            this.txtAlbumID.TabIndex = 1;
+            this.lbxAlbumIdleri.FormattingEnabled = true;
+            this.lbxAlbumIdleri.Location = new System.Drawing.Point(416, 63);
+            this.lbxAlbumIdleri.Name = "lbxAlbumIdleri";
+            this.lbxAlbumIdleri.ScrollAlwaysVisible = true;
+            this.lbxAlbumIdleri.Size = new System.Drawing.Size(432, 407);
+            this.lbxAlbumIdleri.TabIndex = 11;
             // 
-            // lsbAlbumAdi
+            // btnAlbumImport
             // 
-            this.lsbAlbumAdi.FormattingEnabled = true;
-            this.lsbAlbumAdi.Location = new System.Drawing.Point(61, 99);
-            this.lsbAlbumAdi.Name = "lsbAlbumAdi";
-            this.lsbAlbumAdi.Size = new System.Drawing.Size(338, 95);
-            this.lsbAlbumAdi.TabIndex = 2;
-            this.lsbAlbumAdi.DoubleClick += new System.EventHandler(this.lsbAlbumAdi_DoubleClick);
+            this.btnAlbumImport.Location = new System.Drawing.Point(418, 12);
+            this.btnAlbumImport.Name = "btnAlbumImport";
+            this.btnAlbumImport.Size = new System.Drawing.Size(118, 40);
+            this.btnAlbumImport.TabIndex = 10;
+            this.btnAlbumImport.Text = "Excel İmport";
+            this.btnAlbumImport.UseVisualStyleBackColor = true;
+            this.btnAlbumImport.Click += new System.EventHandler(this.btnAlbumImport_Click);
+            // 
+            // btnAlbumIdAl
+            // 
+            this.btnAlbumIdAl.Location = new System.Drawing.Point(542, 12);
+            this.btnAlbumIdAl.Name = "btnAlbumIdAl";
+            this.btnAlbumIdAl.Size = new System.Drawing.Size(135, 40);
+            this.btnAlbumIdAl.TabIndex = 9;
+            this.btnAlbumIdAl.Text = "Album Idlerini Bul";
+            this.btnAlbumIdAl.UseVisualStyleBackColor = true;
+            this.btnAlbumIdAl.Click += new System.EventHandler(this.btnAlbumIdAl_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 166);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(168, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Üzerine 2 defa tıklarsanız kopyalar";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(58, 65);
+            this.label3.Location = new System.Drawing.Point(25, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Album ID Girin";
             // 
-            // label4
+            // lsbAlbumAdi
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(58, 197);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(168, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Üzerine 2 defa tıklarsanız kopyalar";
+            this.lsbAlbumAdi.FormattingEnabled = true;
+            this.lsbAlbumAdi.Location = new System.Drawing.Point(28, 68);
+            this.lsbAlbumAdi.Name = "lsbAlbumAdi";
+            this.lsbAlbumAdi.Size = new System.Drawing.Size(338, 95);
+            this.lsbAlbumAdi.TabIndex = 2;
+            this.lsbAlbumAdi.DoubleClick += new System.EventHandler(this.lsbAlbumAdi_DoubleClick);
+            // 
+            // txtAlbumID
+            // 
+            this.txtAlbumID.Location = new System.Drawing.Point(105, 31);
+            this.txtAlbumID.Name = "txtAlbumID";
+            this.txtAlbumID.Size = new System.Drawing.Size(128, 20);
+            this.txtAlbumID.TabIndex = 1;
+            // 
+            // btnAlbumIdBul
+            // 
+            this.btnAlbumIdBul.Location = new System.Drawing.Point(239, 29);
+            this.btnAlbumIdBul.Name = "btnAlbumIdBul";
+            this.btnAlbumIdBul.Size = new System.Drawing.Size(127, 23);
+            this.btnAlbumIdBul.TabIndex = 0;
+            this.btnAlbumIdBul.Text = "ALBUM ADI BUL";
+            this.btnAlbumIdBul.UseVisualStyleBackColor = true;
+            this.btnAlbumIdBul.Click += new System.EventHandler(this.btnAlbumIdBul_Click);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.chkManualDomainAdd);
+            this.tabPage6.Controls.Add(this.lblManuelDomainAdd);
+            this.tabPage6.Controls.Add(this.txtManuelDomainAdd);
+            this.tabPage6.Controls.Add(this.btnManuleDomainAdd);
+            this.tabPage6.Controls.Add(this.cmbDomainName);
+            this.tabPage6.Controls.Add(this.lbxDomainEkle);
+            this.tabPage6.Controls.Add(this.domainExcelImport);
+            this.tabPage6.Controls.Add(this.domainOlustur);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(1044, 480);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "DOMAİN EKLEME";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // lblManuelDomainAdd
+            // 
+            this.lblManuelDomainAdd.AutoSize = true;
+            this.lblManuelDomainAdd.Location = new System.Drawing.Point(709, 80);
+            this.lblManuelDomainAdd.Name = "lblManuelDomainAdd";
+            this.lblManuelDomainAdd.Size = new System.Drawing.Size(316, 13);
+            this.lblManuelDomainAdd.TabIndex = 15;
+            this.lblManuelDomainAdd.Text = "Soru numarası olursa sadece o soruya ekler olmazsa albüme ekler";
+            // 
+            // txtManuelDomainAdd
+            // 
+            this.txtManuelDomainAdd.Location = new System.Drawing.Point(712, 57);
+            this.txtManuelDomainAdd.Name = "txtManuelDomainAdd";
+            this.txtManuelDomainAdd.Size = new System.Drawing.Size(313, 20);
+            this.txtManuelDomainAdd.TabIndex = 14;
+            // 
+            // btnManuleDomainAdd
+            // 
+            this.btnManuleDomainAdd.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnManuleDomainAdd.Location = new System.Drawing.Point(712, 106);
+            this.btnManuleDomainAdd.Name = "btnManuleDomainAdd";
+            this.btnManuleDomainAdd.Size = new System.Drawing.Size(134, 39);
+            this.btnManuleDomainAdd.TabIndex = 13;
+            this.btnManuleDomainAdd.Text = "Manuel Domain Ekle";
+            this.btnManuleDomainAdd.UseVisualStyleBackColor = true;
+            this.btnManuleDomainAdd.Click += new System.EventHandler(this.btnManuleDomainAdd_Click);
+            // 
+            // cmbDomainName
+            // 
+            this.cmbDomainName.FormattingEnabled = true;
+            this.cmbDomainName.Items.AddRange(new object[] {
+            "---Seç----",
+            "bes.karnemiz.com",
+            "testokul.karnemiz.com"});
+            this.cmbDomainName.Location = new System.Drawing.Point(318, 17);
+            this.cmbDomainName.Name = "cmbDomainName";
+            this.cmbDomainName.Size = new System.Drawing.Size(284, 21);
+            this.cmbDomainName.TabIndex = 12;
+            // 
+            // lbxDomainEkle
+            // 
+            this.lbxDomainEkle.FormattingEnabled = true;
+            this.lbxDomainEkle.Location = new System.Drawing.Point(37, 57);
+            this.lbxDomainEkle.Name = "lbxDomainEkle";
+            this.lbxDomainEkle.ScrollAlwaysVisible = true;
+            this.lbxDomainEkle.Size = new System.Drawing.Size(666, 407);
+            this.lbxDomainEkle.TabIndex = 11;
+            // 
+            // domainExcelImport
+            // 
+            this.domainExcelImport.Location = new System.Drawing.Point(39, 6);
+            this.domainExcelImport.Name = "domainExcelImport";
+            this.domainExcelImport.Size = new System.Drawing.Size(118, 40);
+            this.domainExcelImport.TabIndex = 10;
+            this.domainExcelImport.Text = "Excel İmport";
+            this.domainExcelImport.UseVisualStyleBackColor = true;
+            this.domainExcelImport.Click += new System.EventHandler(this.domainExcelImport_Click);
+            // 
+            // domainOlustur
+            // 
+            this.domainOlustur.Location = new System.Drawing.Point(163, 6);
+            this.domainOlustur.Name = "domainOlustur";
+            this.domainOlustur.Size = new System.Drawing.Size(135, 40);
+            this.domainOlustur.TabIndex = 9;
+            this.domainOlustur.Text = "Domain Ekle";
+            this.domainOlustur.UseVisualStyleBackColor = true;
+            this.domainOlustur.Click += new System.EventHandler(this.domainOlustur_Click);
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.lblVideoId);
+            this.tabPage7.Controls.Add(this.label7);
+            this.tabPage7.Controls.Add(this.btnVideoIsmiDegistir);
+            this.tabPage7.Controls.Add(this.label6);
+            this.tabPage7.Controls.Add(this.label5);
+            this.tabPage7.Controls.Add(this.txtDegisecekVideoAdi);
+            this.tabPage7.Controls.Add(this.txtArananVideoAdi);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(1044, 480);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "VIDEO İŞLEMLERİ";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // lblVideoId
+            // 
+            this.lblVideoId.AutoSize = true;
+            this.lblVideoId.Location = new System.Drawing.Point(206, 123);
+            this.lblVideoId.Name = "lblVideoId";
+            this.lblVideoId.Size = new System.Drawing.Size(109, 13);
+            this.lblVideoId.TabIndex = 7;
+            this.lblVideoId.Text = "Değişecek Video İsmi";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(91, 123);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(100, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Değişecek Video Id";
+            // 
+            // btnVideoIsmiDegistir
+            // 
+            this.btnVideoIsmiDegistir.Location = new System.Drawing.Point(612, 42);
+            this.btnVideoIsmiDegistir.Name = "btnVideoIsmiDegistir";
+            this.btnVideoIsmiDegistir.Size = new System.Drawing.Size(112, 64);
+            this.btnVideoIsmiDegistir.TabIndex = 5;
+            this.btnVideoIsmiDegistir.Text = "Video Adi Değiştir";
+            this.btnVideoIsmiDegistir.UseVisualStyleBackColor = true;
+            this.btnVideoIsmiDegistir.Click += new System.EventHandler(this.btnVideoIsmiDegistir_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(82, 86);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Değişecek Video İsmi";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(99, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Aranan Video İsmi";
+            // 
+            // txtDegisecekVideoAdi
+            // 
+            this.txtDegisecekVideoAdi.Location = new System.Drawing.Point(209, 83);
+            this.txtDegisecekVideoAdi.Name = "txtDegisecekVideoAdi";
+            this.txtDegisecekVideoAdi.Size = new System.Drawing.Size(383, 20);
+            this.txtDegisecekVideoAdi.TabIndex = 1;
+            // 
+            // txtArananVideoAdi
+            // 
+            this.txtArananVideoAdi.Location = new System.Drawing.Point(209, 42);
+            this.txtArananVideoAdi.Name = "txtArananVideoAdi";
+            this.txtArananVideoAdi.Size = new System.Drawing.Size(383, 20);
+            this.txtArananVideoAdi.TabIndex = 0;
+            this.txtArananVideoAdi.TextChanged += new System.EventHandler(this.txtArananVideoAdi_TextChanged);
+            // 
+            // chkManualDomainAdd
+            // 
+            this.chkManualDomainAdd.AutoSize = true;
+            this.chkManualDomainAdd.Location = new System.Drawing.Point(712, 21);
+            this.chkManualDomainAdd.Name = "chkManualDomainAdd";
+            this.chkManualDomainAdd.Size = new System.Drawing.Size(136, 17);
+            this.chkManualDomainAdd.TabIndex = 16;
+            this.chkManualDomainAdd.Text = "Manuel Domain Oluştur";
+            this.chkManualDomainAdd.UseVisualStyleBackColor = true;
+            this.chkManualDomainAdd.CheckedChanged += new System.EventHandler(this.chkManualDomainAdd_CheckedChanged);
             // 
             // Form1
             // 
@@ -493,6 +780,10 @@
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -538,6 +829,31 @@
         private System.Windows.Forms.TextBox txtAlbumID;
         private System.Windows.Forms.Button btnAlbumIdBul;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnManuelAlbumUpload;
+        private System.Windows.Forms.ToolStripMenuItem soruSilToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.ListBox lbxDomainEkle;
+        private System.Windows.Forms.Button domainExcelImport;
+        private System.Windows.Forms.Button domainOlustur;
+        private System.Windows.Forms.ComboBox cmbDomainName;
+        private System.Windows.Forms.Button btnAlbumIdExcelExport;
+        private System.Windows.Forms.ListBox lbxAlbumIdleri;
+        private System.Windows.Forms.Button btnAlbumImport;
+        private System.Windows.Forms.Button btnAlbumIdAl;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnVideoIsmiDegistir;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtDegisecekVideoAdi;
+        private System.Windows.Forms.TextBox txtArananVideoAdi;
+        private System.Windows.Forms.Label lblVideoId;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtManuelDomainAdd;
+        private System.Windows.Forms.Button btnManuleDomainAdd;
+        private System.Windows.Forms.Label lblManuelDomainAdd;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox txtManuelAlbumUpload;
+        private System.Windows.Forms.CheckBox chkManualDomainAdd;
     }
 }
 

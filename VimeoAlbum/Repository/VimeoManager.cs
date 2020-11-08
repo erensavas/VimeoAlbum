@@ -332,11 +332,6 @@ namespace VimeoAlbum.Repository
         {
 
 
-
-
-
-
-
             VimeoDotNet.VimeoClient client1 = new VimeoDotNet.VimeoClient(TokenKey.Token);
 
 

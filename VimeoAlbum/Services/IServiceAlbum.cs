@@ -18,5 +18,7 @@ namespace VimeoAlbum.Services
         Task<VimeoVideo> GetVideoVarMi(long VideoId);
         Task<List<AlbumOlusturModel>> GetAlbumAdi(string albumAdi);
         Task<Album> GetAlbumName(long AlbumId);
+        Task UpdateVideoMetadata(long VideoId, string NewVideoName);
+        Task<Video> GetVideoId(string oldVideoName);
     }
 }
