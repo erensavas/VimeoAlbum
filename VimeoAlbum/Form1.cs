@@ -56,6 +56,91 @@ namespace VimeoAlbum
 
         private async void btnAlbumOlustur_Click(object sender, EventArgs e)
         {
+            CreateAlbumTekli();
+        }
+
+        private async void CreateAlbumTekli()
+        {
+            service = new ServiceAlbum();
+            List<ExcelModel> soruNosuz = new List<ExcelModel>();
+
+            foreach (var item in excelList.Select(x => x.VideoName))
+            {
+                int bul = item.LastIndexOf('-');
+                soruNosuz.Add(
+                    new ExcelModel()
+                    {
+                        VideoName = item.Substring(0, bul)
+                    });
+            }
+
+
+            var videoGrup = soruNosuz.Select(x => x.VideoName).Distinct().ToList();
+
+
+            foreach (var item in videoGrup)
+            {
+                long albumId = await service.AlbumIdOlustur(item);
+                var videoTestSayisi = excelList.Where(x => x.VideoName == item).ToList();
+
+                var testVideo = excelList.Where(x => x.VideoName.Contains(item)).ToList();
+
+                string idler = "";
+
+                if (albumId > 0)
+                {
+
+                    foreach (var item1 in testVideo)
+                    {
+                        var result = await service.GetVideoId(item1.VideoName);
+                        idler += result.Id + ",";
+
+                        //if (result.Pictures == null)
+                        //{
+                        var result1 = await service.GetVideoVarMi(result.Id.Value);  //videonun upload status durumunu alır
+
+                        if (result1 != null)
+                        {
+                            if (result1.files.Count == 0)
+                            {
+                                if (result1.upload.status == "error")
+                                {
+                                    listBox1.Items.Add($"{item1.VideoName}/{result.Id.Value}/ Video hatalı ----------------------");
+                                }
+                                else if (result1.upload.status == "in_progress")
+                                {
+                                    listBox1.Items.Add($"{item1.VideoName}/{result.Id.Value}/ Video hatalı ----------------------");
+                                }
+                                else if (result1.upload.status == "complete")
+                                {
+                                    listBox1.Items.Add($"{item1.VideoName}/{result.Id.Value}/ isimli videonun resmi yok. Ama videosu var");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            listBox1.Items.Add($"{item1.VideoName}/ isimli video bulunamadı");
+                        }
+                        //}
+                    }
+                    idler = idler.Substring(0, idler.Length - 1);
+
+                    bool result2 = await service.AlbumeVideoEkleSevices2(albumId, idler);
+                    if (result2)
+                    {
+                        listBox2.Items.Add($"{item} isimli albüm oluşturuldu.");
+                    }
+                }
+            }
+
+            MessageBox.Show("Vimeo album oluşturma işlem tamamlandı");
+
+            btnAlbumOlustur.Enabled = false;
+        }
+
+
+        private async void CreateAlbumToplu()
+        {
             service = new ServiceAlbum();
 
             var videoGrup = excelList.Select(x => x.VideoName).Distinct().ToList();
@@ -117,6 +202,7 @@ namespace VimeoAlbum
             btnAlbumOlustur.Enabled = false;
         }
 
+
         private async void btnVideoSearch_Click(object sender, EventArgs e)
         {
             //service = new ServiceAlbum();
@@ -168,7 +254,7 @@ namespace VimeoAlbum
             {
                 if (excelExport.Count > 0)
                 {
-                    bool deger = await ExcelExport.excelExportKaydet(result, excelExport);
+                    bool deger = await ExcelExport.excelExportKaydet(result, excelExport,"COKLU");
                     if (deger)
                     {
                         MessageBox.Show("Excel dosyası oluşturuldu");
@@ -212,6 +298,41 @@ namespace VimeoAlbum
             return Path.GetDirectoryName(dl.FileName);
 
         }
+
+        private async Task<string> ExcelDoldurSoruNo()
+        {
+            excelExport.Clear();
+            OpenFileDialog dl = new OpenFileDialog();
+            //dl.DefaultExt = ".";
+            dl.FilterIndex = 1;
+            dl.Multiselect = true;
+            dl.Title = "Excel dosyası seçiniz";
+            dl.Filter = "mp4 files (*.mp4)|*.mp4|avi files (*.avi)|*.avi|All files (*.*)|*.*";
+            dl.FilterIndex = 3;
+            if (dl.ShowDialog() == DialogResult.OK)
+            {
+
+                string[] arrAllFiles = dl.SafeFileNames;
+
+                foreach (var item in arrAllFiles)
+                {
+                    int bul = item.LastIndexOf('.');
+                    excelExport.Add(
+                        new ExcelModel()
+                        {
+                            VideoName = item.Substring(0, bul)
+                        });
+                }
+            }
+            else
+            {
+                return "hata";
+            }
+
+            return Path.GetDirectoryName(dl.FileName);
+
+        }
+
 
         private async void btnEkleOrbim_Click(object sender, EventArgs e)
         {
@@ -1129,10 +1250,17 @@ namespace VimeoAlbum
             {
                 service = new ServiceAlbum();
                 var result = await service.GetVideoId(txtArananVideoAdi.Text);
-
-                txtDegisecekVideoAdi.Text = result.Name;
-                lblVideoId.Text = result.Id.ToString(); ;
-                VideoId = result.Id.Value;
+                if (result==null)
+                {
+                    MessageBox.Show("Video bulunamadı");
+                }
+                else
+                {
+                    txtDegisecekVideoAdi.Text = result.Name;
+                    lblVideoId.Text = result.Id.ToString(); ;
+                    VideoId = result.Id.Value;
+                }
+              
             }
         }
 
@@ -1140,6 +1268,7 @@ namespace VimeoAlbum
         {
             service = new ServiceAlbum();
             service.UpdateVideoMetadata(VideoId, txtDegisecekVideoAdi.Text);
+            MessageBox.Show("Video ismi değiştirme işlemi tamamlandı");
         }
 
         private async void btnManuleDomainAdd_Click(object sender, EventArgs e)
@@ -1290,6 +1419,22 @@ namespace VimeoAlbum
                 txtManuelDomainAdd.Visible = false;
                 btnManuleDomainAdd.Visible = false;
                 lblManuelDomainAdd.Visible = false;
+            }
+        }
+
+        private async void btnExcelSoruNumarali_Click(object sender, EventArgs e)
+        {
+            string result = await ExcelDoldurSoruNo();
+            if (result != "hata")
+            {
+                if (excelExport.Count > 0)
+                {
+                    bool deger = await ExcelExport.excelExportKaydet(result, excelExport,"TEKLI");
+                    if (deger)
+                    {
+                        MessageBox.Show("Excel dosyası oluşturuldu");
+                    }
+                }
             }
         }
     }

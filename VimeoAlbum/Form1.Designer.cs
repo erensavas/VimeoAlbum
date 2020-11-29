@@ -78,6 +78,7 @@
             this.txtAlbumID = new System.Windows.Forms.TextBox();
             this.btnAlbumIdBul = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.chkManualDomainAdd = new System.Windows.Forms.CheckBox();
             this.lblManuelDomainAdd = new System.Windows.Forms.Label();
             this.txtManuelDomainAdd = new System.Windows.Forms.TextBox();
             this.btnManuleDomainAdd = new System.Windows.Forms.Button();
@@ -93,7 +94,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDegisecekVideoAdi = new System.Windows.Forms.TextBox();
             this.txtArananVideoAdi = new System.Windows.Forms.TextBox();
-            this.chkManualDomainAdd = new System.Windows.Forms.CheckBox();
+            this.btnExcelSoruNumarali = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -433,6 +434,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnExcelSoruNumarali);
             this.tabPage3.Controls.Add(this.btnExcelExport);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -444,11 +446,11 @@
             // 
             // btnExcelExport
             // 
-            this.btnExcelExport.Location = new System.Drawing.Point(94, 74);
+            this.btnExcelExport.Location = new System.Drawing.Point(56, 61);
             this.btnExcelExport.Name = "btnExcelExport";
-            this.btnExcelExport.Size = new System.Drawing.Size(132, 37);
+            this.btnExcelExport.Size = new System.Drawing.Size(198, 37);
             this.btnExcelExport.TabIndex = 1;
-            this.btnExcelExport.Text = "Videoları Excel Yap";
+            this.btnExcelExport.Text = "Videoları Excel Yap(SoruNo yok)";
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
@@ -602,6 +604,17 @@
             this.tabPage6.Text = "DOMAİN EKLEME";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // chkManualDomainAdd
+            // 
+            this.chkManualDomainAdd.AutoSize = true;
+            this.chkManualDomainAdd.Location = new System.Drawing.Point(712, 21);
+            this.chkManualDomainAdd.Name = "chkManualDomainAdd";
+            this.chkManualDomainAdd.Size = new System.Drawing.Size(136, 17);
+            this.chkManualDomainAdd.TabIndex = 16;
+            this.chkManualDomainAdd.Text = "Manuel Domain Oluştur";
+            this.chkManualDomainAdd.UseVisualStyleBackColor = true;
+            this.chkManualDomainAdd.CheckedChanged += new System.EventHandler(this.chkManualDomainAdd_CheckedChanged);
+            // 
             // lblManuelDomainAdd
             // 
             this.lblManuelDomainAdd.AutoSize = true;
@@ -635,7 +648,12 @@
             this.cmbDomainName.Items.AddRange(new object[] {
             "---Seç----",
             "bes.karnemiz.com",
-            "testokul.karnemiz.com"});
+            "testokul.karnemiz.com",
+            "puandeneme.com",
+            "kafadengi.karnemiz.com",
+            "aydinyayinlari.karnemiz.com",
+            "nego.karnemiz.com",
+            "sinavdeneme.com"});
             this.cmbDomainName.Location = new System.Drawing.Point(318, 17);
             this.cmbDomainName.Name = "cmbDomainName";
             this.cmbDomainName.Size = new System.Drawing.Size(284, 21);
@@ -748,16 +766,15 @@
             this.txtArananVideoAdi.TabIndex = 0;
             this.txtArananVideoAdi.TextChanged += new System.EventHandler(this.txtArananVideoAdi_TextChanged);
             // 
-            // chkManualDomainAdd
+            // btnExcelSoruNumarali
             // 
-            this.chkManualDomainAdd.AutoSize = true;
-            this.chkManualDomainAdd.Location = new System.Drawing.Point(712, 21);
-            this.chkManualDomainAdd.Name = "chkManualDomainAdd";
-            this.chkManualDomainAdd.Size = new System.Drawing.Size(136, 17);
-            this.chkManualDomainAdd.TabIndex = 16;
-            this.chkManualDomainAdd.Text = "Manuel Domain Oluştur";
-            this.chkManualDomainAdd.UseVisualStyleBackColor = true;
-            this.chkManualDomainAdd.CheckedChanged += new System.EventHandler(this.chkManualDomainAdd_CheckedChanged);
+            this.btnExcelSoruNumarali.Location = new System.Drawing.Point(349, 61);
+            this.btnExcelSoruNumarali.Name = "btnExcelSoruNumarali";
+            this.btnExcelSoruNumarali.Size = new System.Drawing.Size(198, 37);
+            this.btnExcelSoruNumarali.TabIndex = 2;
+            this.btnExcelSoruNumarali.Text = "Videoları Excel Yap(SoruNo var)";
+            this.btnExcelSoruNumarali.UseVisualStyleBackColor = true;
+            this.btnExcelSoruNumarali.Click += new System.EventHandler(this.btnExcelSoruNumarali_Click);
             // 
             // Form1
             // 
@@ -854,6 +871,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox txtManuelAlbumUpload;
         private System.Windows.Forms.CheckBox chkManualDomainAdd;
+        private System.Windows.Forms.Button btnExcelSoruNumarali;
     }
 }
 

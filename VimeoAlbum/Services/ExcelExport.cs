@@ -15,7 +15,7 @@ namespace VimeoAlbum.Services
     public class ExcelExport
     {
      
-        public async static Task<bool> excelExportKaydet(string fileName,List<ExcelModel> model)
+        public async static Task<bool> excelExportKaydet(string fileName,List<ExcelModel> model,string durum)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace VimeoAlbum.Services
 
                 var memory = new MemoryStream();
 
-                using (var fs = new FileStream(Path.Combine(fileName+"\\aaa-" + fileAdi+".xlsx"), FileMode.Create, FileAccess.Write))
+                using (var fs = new FileStream(Path.Combine(fileName+"\\aaa-"+durum+"-" + fileAdi+".xlsx"), FileMode.Create, FileAccess.Write))
                 {
                     IWorkbook workbook = new XSSFWorkbook();
                     ISheet excelSheet = workbook.CreateSheet("Videolar");

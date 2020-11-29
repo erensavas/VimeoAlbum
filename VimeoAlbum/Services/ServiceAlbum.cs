@@ -59,6 +59,14 @@ namespace VimeoAlbum.Services
             return result;
         }
 
+        public async Task<bool> AlbumeVideoEkleSevices2(long AlbumId, string joinle)
+        {
+            vimeoManager = new VimeoManager();
+           
+            var result = await vimeoManager.AlbumeVideoEkle(AlbumId, joinle);
+            return result;
+        }
+
         async Task<List<ModelView>> IServiceAlbum.GetVideoGertir(string VideoAdi)
         {
             vimeoManager = new VimeoManager();

@@ -279,12 +279,6 @@ namespace VimeoAlbum.Repository
         public async Task<VimeoDotNet.Net.IUploadRequest> VideoYukle(VimeoDotNet.Net.IBinaryContent content, int size)
         {
 
-
-
-
-
-
-
             VimeoDotNet.VimeoClient client1 = new VimeoDotNet.VimeoClient(TokenKey.Token);
 
 

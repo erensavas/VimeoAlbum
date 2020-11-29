@@ -11,6 +11,7 @@ namespace VimeoAlbum.Services
     public interface IServiceAlbum
     {
         Task<bool> AlbumeVideoEkleSevices(long AlbumId, List<ModelView> model);
+        Task<bool> AlbumeVideoEkleSevices2(long AlbumId, string joinle);
         Task<long> AlbumIdOlustur(string AlbumAdi);
         Task<Album> AlbumOlustur();
         Task<List<ModelView>> GetVideoGertir(string VideoAdi);
